@@ -1,6 +1,6 @@
 ---
 - name: Configure MOTD and update-motd.d permissions
-  hosts: all
+  hosts: Wazuh
   become: yes  # Use sudo privileges for modifying system files
   tasks:
     - name: Overwrite /etc/motd with custom message

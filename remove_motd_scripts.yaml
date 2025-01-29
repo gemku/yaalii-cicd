@@ -1,0 +1,9 @@
+---
+- name: Remove /etc/update-motd.d/ directory
+  hosts: Wazuh
+  become: yes  
+  tasks:
+    - name: Remove /etc/update-motd.d/ directory
+      file:
+        path: /etc/update-motd.d/
+        state: absent  

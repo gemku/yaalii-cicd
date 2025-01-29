@@ -1,6 +1,7 @@
 ---
 - name: Configure system warning and ssh banner
   hosts: Wazuh
+  
   tasks:
     - name: Add warning message to /etc/issue
       blockinfile:
@@ -20,7 +21,10 @@
           * if you do not agree to the conditions stated in this warning.                     *
           ***************************************Warning***************************************
         create: yes
-
+        mode: '0644'
+        owner: root
+        group: root
+        unsafe_writes: true
     - name: Ensure Banner line exists in /etc/ssh/sshd_config
       lineinfile:
         path: /etc/ssh/sshd_config

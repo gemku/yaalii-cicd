@@ -6,7 +6,6 @@
     - name: Add warning message to /etc/issue
       lineinfile:
         path: /etc/issue
-        atomic: no
         line: |
           **************************************Warning****************************************
           * This system is for the use of authorized users only. Any or all uses of this      *
@@ -21,7 +20,7 @@
           * and consent to the terms and conditions of use. LOG OFF IMMEDIATELY (press CTRL-C)*
           * if you do not agree to the conditions stated in this warning.                     *
           ***************************************Warning***************************************
-        create: yes
+      
 
     - name: Ensure Banner line exists in /etc/ssh/sshd_config
       lineinfile:

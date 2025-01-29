@@ -1,7 +1,7 @@
 ---
 - name: Configure system warning and ssh banner
   hosts: Wazuh
-  
+  become: yes
   tasks:
     - name: Add warning message to /etc/issue
       blockinfile:

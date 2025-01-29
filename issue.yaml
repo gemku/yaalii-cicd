@@ -1,0 +1,35 @@
+---
+- name: Configure system warning and ssh banner
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add warning message to /etc/issue
+      lineinfile:
+        path: /etc/issue
+        line: |
+          **************************************Warning****************************************
+          * This system is for the use of authorized users only. Any or all uses of this      *
+          * system and all files on this system may be intercepted, monitored, recorded,      *
+          * copied, audited, inspected and disclosed to authorized organizational and law     *
+          * enforcement personnel. Your access is strictly limited to applicable services     *
+          * of the system for which you have obtained written authorization, and will be      *
+          * governed by the organization's security policy & acceptable usage standard.       *
+          * Unauthorized or improper use of this system is strictly prohibited and may        *
+          * result in administrative disciplinary action and/or civil charges/criminal        *
+          * penalties. By continuing to use this system, you indicate your awareness of       *
+          * and consent to the terms and conditions of use. LOG OFF IMMEDIATELY (press CTRL-C)*
+          * if you do not agree to the conditions stated in this warning.                     *
+          ***************************************Warning***************************************
+        create: yes
+
+    - name: Ensure Banner line exists in /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?Banner'
+        line: 'Banner /etc/issue'
+        create: yes
+
+    - name: Restart ssh service
+      service:
+        name: sshd
+        state: restarted

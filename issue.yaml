@@ -1,12 +1,12 @@
 ---
 - name: Configure system warning and ssh banner
   hosts: Wazuh
-  become: yes
+  become: yes  # This ensures privilege escalation to root
   tasks:
     - name: Add warning message to /etc/issue
-      lineinfile:
+      blockinfile:
         path: /etc/issue
-        line: |
+        block: |
           **************************************Warning****************************************
           * This system is for the use of authorized users only. Any or all uses of this      *
           * system and all files on this system may be intercepted, monitored, recorded,      *
@@ -20,7 +20,7 @@
           * and consent to the terms and conditions of use. LOG OFF IMMEDIATELY (press CTRL-C)*
           * if you do not agree to the conditions stated in this warning.                     *
           ***************************************Warning***************************************
-      
+        create: yes
 
     - name: Ensure Banner line exists in /etc/ssh/sshd_config
       lineinfile:

@@ -6,6 +6,7 @@
     - name: Add warning message to /etc/issue
       lineinfile:
         path: /etc/issue
+        atomic: no
         line: |
           **************************************Warning****************************************
           * This system is for the use of authorized users only. Any or all uses of this      *

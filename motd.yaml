@@ -12,7 +12,7 @@
           (2) Think before you type.
           (3) With great power comes great responsibility.
         force: yes  # Ensure the file is overwritten regardless of content
-         create: yes
+        create: yes
         mode: '0644'
         owner: root
         group: root

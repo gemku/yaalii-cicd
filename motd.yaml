@@ -1,0 +1,19 @@
+---
+- name: Configure MOTD and update-motd.d permissions
+  hosts: all
+  become: yes  # Use sudo privileges for modifying system files
+  tasks:
+    - name: Overwrite /etc/motd with custom message
+      copy:
+        dest: /etc/motd
+        content: |
+          We trust you have received the usual lecture from local System Administrator. It usually boils down to these three things. 
+          (1) Respect the privacy of others.
+          (2) Think before you type.
+          (3) With great power comes great responsibility.
+        force: yes  # Ensure the file is overwritten regardless of content
+
+    - name: Remove execute permissions on files in /etc/update-motd.d/
+      file:
+        path: "{{ item }}"
+        mode: '0644'

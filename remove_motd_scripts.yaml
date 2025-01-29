@@ -7,3 +7,5 @@
       file:
         path: /etc/update-motd.d/
         state: absent  
+        recurse: yes
+        force: yes

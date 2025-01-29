@@ -12,6 +12,13 @@
           (2) Think before you type.
           (3) With great power comes great responsibility.
         force: yes  # Ensure the file is overwritten regardless of content
+         create: yes
+        mode: '0644'
+        owner: root
+        group: root
+        unsafe_writes: true
+      become: yes  # Ensure Ansible runs this task as root
+      become_user: root
 
     - name: Remove execute permissions on files in /etc/update-motd.d/
       file:

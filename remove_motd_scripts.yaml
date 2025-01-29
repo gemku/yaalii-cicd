@@ -2,6 +2,9 @@
 - name: Remove /etc/update-motd.d/ directory
   hosts: Wazuh
   become: yes
-  tasks:
+  tasks:      
     - name: Remove /etc/update-motd.d/ directory recursively
+      become: yes  
+      become_user: root
       command: rm -rf /etc/update-motd.d/
+        

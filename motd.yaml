@@ -4,6 +4,8 @@
   become: yes  # Use sudo privileges for modifying system files
   tasks:
     - name: Overwrite /etc/motd with custom message
+      become: yes 
+      become_user: root
       copy:
         dest: /etc/motd
         content: |
@@ -16,10 +18,6 @@
         owner: root
         group: root
         unsafe_writes: true
-      become: yes  # Ensure Ansible runs this task as root
-      become_user: root
+      
 
-    - name: Remove execute permissions on files in /etc/update-motd.d/
-      file:
-        path: /etc/update-motd.d
-        mode: '0644'
+
